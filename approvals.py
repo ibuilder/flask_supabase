@@ -9,18 +9,18 @@ supabase: Client = create_client(url, key)
 # Function to Fetch All Games
 
 
-def find_all_approvals():
+def find_approvals():
     data = supabase.table("approvals").select("*").execute()
     # Equivalent for SQL Query "SELECT * FROM games;"
     return data['data']
 
 
-approvals = find_all_approvals()
+approvals = find_approvals()
 
 # Function to add a new game
 
 
-def add_approval_to_DB(title, project_name, value) -> dict:
+def insert_approval(title, project_name, value) -> dict:
 
     approval = {
         "title": title,

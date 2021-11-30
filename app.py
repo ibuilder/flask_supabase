@@ -1,8 +1,7 @@
-from flask import Flask, jsonify
-from approvals import approvals
-from flask import request, Response
-from approvals import add_approval_to_DB
+from flask import Flask, jsonify, request, Response
 from flask_debugtoolbar import DebugToolbarExtension
+from approvals import approvals, insert_approval
+
 
 app = Flask(__name__)
 
@@ -43,7 +42,7 @@ def add_approval():
         project_name = data['project_name']
         value = data['value']
         if title and project_name and value:
-            data = add_approval_to_DB(title, project_name, int(value))
+            data = insert_approval(title, project_name, int(value))
             return jsonify(data), 201
     except:
         return Response('''{"message": "Bad Request"}''', status=400, mimetype='application/json')
