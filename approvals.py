@@ -10,7 +10,7 @@ supabase: Client = create_client(url, key)
 
 
 def find_all_approvals():
-    data = SUPA.table("approvals").select("*").execute()
+    data = supabase.table("approvals").select("*").execute()
     # Equivalent for SQL Query "SELECT * FROM games;"
     return data['data']
 
@@ -27,7 +27,7 @@ def add_approval_to_DB(title, project_name, value) -> dict:
         "project_name": project_name,
         "value": value
     }
-    data = SUPA.table("approvals").insert(approval).execute()
+    data = supabase.table("approvals").insert(approval).execute()
     # Equivalent to the SQL Insert
 
     return data['data']
